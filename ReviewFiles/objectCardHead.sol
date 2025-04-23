@@ -2,16 +2,11 @@
 pragma solidity ^0.8.0;
 
 contract objectCardHead {
-
     address public marketplace;
     address public owner;
 
-    struct User{
-        string name;
-        uint[] ownedCardIds;
-    }
-
-    mapping(address => User) public users;
+    mapping(uint => address) public cardToOwner;
+    mapping(address => string) public userNames;
 
     event Debug(string note, address caller, address from, address to, uint cardID);
 
@@ -25,41 +20,25 @@ contract objectCardHead {
     }
 
     function createUser(string memory _name) public {
-        require(bytes(users[msg.sender].name).length == 0, "User already exists");
-        users[msg.sender].name = _name;
+        require(bytes(userNames[msg.sender]).length == 0, "User already exists");
+        userNames[msg.sender] = _name;
     }
 
     function addCardToUser(uint _cardId) public {
-        require(bytes(users[msg.sender].name).length > 0, "Create user first");
-        users[msg.sender].ownedCardIds.push(_cardId);
-    }
-
-    function getMyCards() public view returns (uint[] memory) {
-        return users[msg.sender].ownedCardIds;
-    }
-
-    function getMyName() public view returns (string memory) {
-        return users[msg.sender].name;
+        require(bytes(userNames[msg.sender]).length > 0, "Create user first");
+        require(cardToOwner[_cardId] == address(0), "Card already assigned");
+        cardToOwner[_cardId] = msg.sender;
     }
 
     function transferCardOwnership(address from, address to, uint cardID) public {
         emit Debug("Entered transferCardOwnership", msg.sender, from, to, cardID);
         require(msg.sender == marketplace, "Only marketplace can transfer");
+        require(cardToOwner[cardID] == from, "Sender does not own this card");
 
-            uint[] storage fromCards = users[from].ownedCardIds;
-    bool found = false;
-
-    for (uint i = 0; i < fromCards.length; i++) {
-        if (fromCards[i] == cardID) {
-            fromCards[i] = fromCards[fromCards.length - 1]; // move last item to this index
-            fromCards.pop(); // remove last item
-            found = true;
-            break;
-        }
+        cardToOwner[cardID] = to;
     }
 
-    require(found, "Card not found in sender's inventory");
-
-        users[to].ownedCardIds.push(cardID);
+    function getMyName() public view returns (string memory) {
+        return userNames[msg.sender];
     }
 }
