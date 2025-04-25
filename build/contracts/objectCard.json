@@ -102,7 +102,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -121,7 +122,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -150,7 +152,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -252,7 +255,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -265,7 +269,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -312,7 +317,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -325,7 +331,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"barcode\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"name\":\"CardAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"barcode\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"}],\"name\":\"CardCertified\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_game\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_series\",\"type\":\"string\"},{\"internalType\":\"enum objectCard.Grading\",\"name\":\"_grade\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"_edition\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"_rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"_imageFront\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_imageBack\",\"type\":\"string\"}],\"name\":\"addCard\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_barcode\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"_rating\",\"type\":\"uint8\"}],\"name\":\"cardCertification\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"cardDataBase\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"game\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"series\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"enum objectCard.Grading\",\"name\":\"grade\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"edition\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"barcode\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"imageFront\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imageBack\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"cardToOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"certifiedCards\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"barcode\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_barcode\",\"type\":\"uint256\"}],\"name\":\"getCard\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"game\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"series\",\"type\":\"string\"},{\"internalType\":\"enum objectCard.Grading\",\"name\":\"grade\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"edition\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"imageFront\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imageBack\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getCertifiedCard\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"barcode\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"rating\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCertifiedCardCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNextBarcode\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/objectCard.sol\":\"objectCard\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/objectCard.sol\":{\"keccak256\":\"0x5026e3ecc244f7a05fcecfc42798c013b455b549a7156ec289d04bf7e2f4f3dd\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fcf5f9d24eeed626b102eaed463bb55a11d1bca4e0bcdc4a36f437963296b34d\",\"dweb:/ipfs/QmeLAsMguLSYfNNXaAJU63hhNsK56rkhbxgFydtVPgB394\"]}},\"version\":1}",
@@ -16865,9 +16872,17 @@
     "name": "solc",
     "version": "0.8.21+commit.d9974bed.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1745479051351": {
+      "events": {},
+      "links": {},
+      "address": "0xEd8CEe3073B48b2B5028322F922fC997828E1129",
+      "transactionHash": "0x49676a5cf60ae49ce628823406e09ed7e38ee982d423de8a2b922ede255018d2"
+    }
+  },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-24T05:48:51.163Z",
+  "updatedAt": "2025-04-25T20:13:20.989Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

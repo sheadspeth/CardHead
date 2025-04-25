@@ -56,7 +56,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -101,7 +102,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -120,7 +122,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"companyAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"name\":\"companyAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"companyAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"seriesName\",\"type\":\"string\"}],\"name\":\"seriesAdded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"}],\"name\":\"addCompany\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_seriesName\",\"type\":\"string\"}],\"name\":\"addSeries\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"companies\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_companyAddr\",\"type\":\"address\"}],\"name\":\"getCompanyName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_companyAddr\",\"type\":\"address\"}],\"name\":\"getCompanySeries\",\"outputs\":[{\"internalType\":\"string[]\",\"name\":\"\",\"type\":\"string[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/company.sol\":\"company\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/company.sol\":{\"keccak256\":\"0x11a95991407f6e3becac7a13205b9424d53bf4ea34775aad6c7bd52895a731eb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0231591ec82d3642b6395c945205b4c3ae808928f784965047aeedd5dc45b1e6\",\"dweb:/ipfs/QmNw1dp7cFxHEpuVhTSaH39iPm4WKfHHxboYSyNfyqmRcv\"]}},\"version\":1}",
@@ -10544,9 +10547,17 @@
     "name": "solc",
     "version": "0.8.21+commit.d9974bed.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1745479051351": {
+      "events": {},
+      "links": {},
+      "address": "0x54806bC8faAf4739a60522EB2153b19bDb5dF979",
+      "transactionHash": "0x6855a7deae4d93b7d5026201b65d9bd845f1619f15358c0118cdf01f78248c7b"
+    }
+  },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-24T05:48:51.157Z",
+  "updatedAt": "2025-04-25T20:13:21.042Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

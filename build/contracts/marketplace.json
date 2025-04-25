@@ -145,7 +145,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -158,7 +159,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -187,7 +189,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -218,7 +221,8 @@
       "name": "buyCard",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -11338,9 +11342,17 @@
     "name": "solc",
     "version": "0.8.21+commit.d9974bed.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1745479051351": {
+      "events": {},
+      "links": {},
+      "address": "0x76AC9C576ac575885E0d0250ccd32136a62f142a",
+      "transactionHash": "0x037c594cad076b5f5fcc9b6f0259b5a60e256893742b32f316456d6a648ff615"
+    }
+  },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-24T05:48:51.160Z",
+  "updatedAt": "2025-04-25T20:13:20.879Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
