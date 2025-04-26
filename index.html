@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CardHead Profile</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Supermercado+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
+    <!-- Navbar Section -->
+    <div class="navbar">
+        <a href="index.html">User</a>
+        <a href="marketplace.html">Marketplace</a>
+      </div>
+      
+
+
+    <!-- Profile container -->
     <div class="profile-container">
         <div class="pfp">
             <img src="http://127.0.0.1:8080/ipfs/QmNZq41v8o4Svj2kD8tdud9rdYNX4LpXAARApRsQ5Bk3wk" alt="Profile Picture" />
@@ -26,9 +36,8 @@
         </div>
     </div>
     
+    <!-- Scrolling cards wrapper -->
     <div class="scrolling-wrapper">
-        <div class="card"></div>
-
         <div class="card">
             <h2>Card</h2>
             <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
@@ -36,51 +45,44 @@
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 2" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 3" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 4" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 5" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 6" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 7" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 8" />
         </div>
         
         <div class="card">
             <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 9" />
         </div>
-
-      </div>
-<!--     
-    <input id="cardId" placeholder="Card ID " />
-    <input id="price" placeholder="Price in Wei" />
-    <button onclick="listCard()">List Card</button> 
-    -->
-
+    </div>
 
     <script src="script.js"></script>
 </body>

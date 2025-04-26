@@ -1,94 +1,95 @@
+/* Body Styling */
 body {
-    background-color: rgb(249, 243, 253);
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
+  background-color: rgb(249, 243, 253);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #111;
+  padding: 1rem;
+  font-family: 'Supermercado One', sans-serif;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 2rem;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #00ffc8;
+  text-shadow: 0 0 10px #00ffc8;
+}
+
+/* Profile Section */
+.profile-container {
+  display: flex;
+  margin-top: 3%;
+}
+
+.pfp img {
+  width: 17vw;
+  height: 17vw;
+  border-radius: 50%;
+  margin-left: 3%;
+  margin-top: 3%;
+}
+
+.profile-text {
+  margin-left: 2vw;
+}
+
+#Name {
+  font-family: 'Supermercado One', cursive;
+  font-size: 4vw;
+  margin: 0.5vw 0;
+}
+
+#Bio {
+  margin-left: 2vw;
+  padding: 1.5vw;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  max-width: 50vw;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
+/* Card Section */
 .scrolling-wrapper {
-    margin-top: 1%;
-    margin-left: -10%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-  }
+  margin-top: 1%;
+  margin-left: -10%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
 
+.card {
+  display: inline-block;
+  width: 12vw;
+  height: 17vw;
+  margin-left: 10vw;
+  margin-bottom: 2vw;
+  padding: 10px;
+  text-align: center;
+  vertical-align: top;
+  border-radius: 8px;
+}
 
-  
-  .card {
-    display: inline-block;
-    width: 12vw;
-    height: 17vw;
-    margin-left: 10vw;
-    margin-bottom: 2vw;
-    padding: 10px;
-    text-align: center;
-    vertical-align: top;
-    border-radius: 8px;
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    max-height: 25vw;
-    object-fit:fill;
-    border-radius: 4px;
-  }
-
-  .pfp img {
-    width: 17vw;
-    height: 17vw;
-    border-radius: 50%;
-    margin-left: 3%;
-    margin-top: 3%;
-  }
-
-  #Name {
-    font-family: 'Supermercado One', cursive;
-    font-size: 4vw; /* or any size you want */
-    margin: 0.5vw 0;
-  }
-
-  .profile-container {
-    display: flex;
-    align-items: center; /* vertically align text with image */
-    margin: 3%;
-  }
-
-  
-  .profile-text {
-    margin-left: 2vw;
-  }
-  
-  .profile-text p {
-    margin: 0.5vw 0;
-    font-size: 1.2vw;
-  }
-
-  .ratings-row {
-    margin-left: 5%;
-    display: flex;
-    gap: 15vw;               /* spacing between each rating */
-    align-items:stretch ;
-    margin-top: 1vw;
-  }
-  
-  .ratings-row p {
-    margin: 0;
-    font-size: 1vw;
-  }
-
-  #Bio{
-    margin-left: 2vw;
-    padding: 1.5vw;
-    background-color: #ffffff;         /* Light box background */
-    border: 1px solid #ddd;            /* Subtle border */
-    border-radius: 12px;               /* Smooth, rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
-    max-width: 50vw;                   /* Optional: control width */
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-  }
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 25vw;
+  object-fit: fill;
+  border-radius: 4px;
+}
