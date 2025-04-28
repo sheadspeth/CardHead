@@ -8,8 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval'; object-src 'self'">
+    
+
 
 </head>
 <body>
@@ -18,6 +20,7 @@
     <div class="navbar">
         <a href="index.html">User</a>
         <a href="marketplace.html">Marketplace</a>
+        <a href="company.html">Company</a>
       </div>
       
 
@@ -83,11 +86,36 @@
     <button onclick="listCard()">List Card</button> 
     -->
 
-      <div id="uploadCardForm">
+    <div id="uploadCardForm">
         <input type="text" id="cardName" placeholder="Card Name" />
+    
+        <select id="companyDropdown">
+            <option value="">Select Company</option>
+        </select>
+    
+        <select id="seriesDropdown">
+            <option value="">Select Series</option>
+        </select>
+    
+        <select id="cardEdition">
+            <option value="First Edition">First Edition</option>
+            <option value="Limited Edition">Limited Edition</option>
+            <option value="Unlimited Edition">Unlimited Edition</option>
+        </select>
+    
+        <select id="cardGrade">
+            <option value="0">HERALD</option>
+            <option value="1">GUARDIAN</option>
+            <option value="2">CRUSADER</option>
+            <option value="3">ARCHON</option>
+            <option value="4">LEGEND</option>
+            <option value="5">ANCIENT</option>
+            <option value="6">DIVINE</option>
+        </select>
+    
         <input type="file" id="cardImageFront" />
-        <button onclick="uploadCard()">Upload Card</button>
-      </div>
+        <button id="uploadCardBtn">Upload Card</button>
+    </div>
 
     <div id="createAccountForm">
         <input type="text" id="newUsername" placeholder="Enter Username" />

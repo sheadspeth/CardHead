@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardHead Company</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
+    
+
+
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <div class="navbar">
+        <a href="index.html">User</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="company.html">Company</a>
+    </div>
+
+    <div class="company-container">
+
+        <h1>Create Your Company</h1>
+        <input type="text" id="newCompanyName" placeholder="Enter New Company Name" />
+        <button id="createCompanyBtn">Create Company</button>
+
+        <hr>
+
+        <h1>Add Series to Your Company</h1>
+        <input type="text" id="newSeriesName" placeholder="Enter New Series Name" />
+        <button id="addSeriesBtn">Add Series</button>
+
+        <hr>
+
+        <h1>View Your Company Info</h1>
+        <button id="viewCompanyBtn">View My Company Info</button>
+
+        <div id="companyInfo">
+            <h2 id="companyName">Company: (Not Loaded)</h2>
+            <ul id="seriesList"></ul>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

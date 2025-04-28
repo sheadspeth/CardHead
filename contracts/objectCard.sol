@@ -25,9 +25,8 @@ contract objectCard {
     uint private nextBarcode = 1;
 
     mapping(uint256 => Card) public cardDataBase;
-    mapping(uint => address) public cardToOwner;
+ 
     Certify[] public certifiedCards;
-
     event CardAdded(uint barcode, string name);
     event CardCertified(uint barcode, address user, uint8 rating);
 
@@ -58,7 +57,6 @@ contract objectCard {
             imageBack: _imageBack
         });
 
-        cardToOwner[currentBarcode] = msg.sender;
 
         emit CardAdded(currentBarcode, _name);
 
