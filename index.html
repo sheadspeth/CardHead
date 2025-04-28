@@ -30,49 +30,40 @@
         <div class="card"></div>
 
         <div class="card">
-            <h2>Card</h2>
+            <h2 id="cardName">Charizard</h2>
+            <h2 id="certifyName">Certifier: Sliman</h2>
             <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <button class="sell-button" onclick="Sell">Sell</button>
+        </div>
+
+        <div class="card">
+            <h2 id="cardName">Charizard</h2>
+            <h2 id="certifyName">Certifier: Sliman</h2>
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <button class="sell-button" onclick="Sell">Sell</button>
+        </div>
+
+        <div class="card">
+            <h2 id="cardName">Charizard</h2>
+            <h2 id="certifyName">Certifier: Sliman</h2>
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <button class="sell-button" onclick="Sell">Sell</button>
+        </div>
+
+        <div class="card">
+            <h2 id="cardName">Charizard</h2>
+            <h2 id="certifyName">Certifier: Sliman</h2>
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <button class="sell-button" onclick="Sell">Sell</button>
+        </div>
+
+        <div class="card">
+            <h2 id="cardName">Charizard</h2>
+            <h2 id="certifyName">Certifier: Sliman</h2>
+            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
+            <button class="sell-button" onclick="sellCard()">Sell</button>
         </div>
         
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
-        
-        <div class="card">
-            <h2>Card</h2>
-            <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card 1" />
-        </div>
 
       </div>
 <!--     
@@ -81,6 +72,17 @@
     <button onclick="listCard()">List Card</button> 
     -->
 
+      <div id="uploadCardForm">
+        <input type="text" id="cardName" placeholder="Card Name" />
+        <input type="file" id="cardImageFront" />
+        <button onclick="uploadCard()">Upload Card</button>
+      </div>
+
+    <div id="createAccountForm">
+        <input type="text" id="newUsername" placeholder="Enter Username" />
+        <input type="file" id="profileImage" />
+        <button onclick="createAccount()">Create Account</button>
+    </div>
 
     <script src="script.js"></script>
 </body>

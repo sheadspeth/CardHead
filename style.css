@@ -12,12 +12,13 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    padding-bottom: 5vw;
   }
 
 
   
   .card {
-    display: inline-block;
+    display:inline-flex;
     width: 12vw;
     height: 17vw;
     margin-left: 10vw;
@@ -26,6 +27,9 @@ body {
     text-align: center;
     vertical-align: top;
     border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
   }
   
   .card img {
@@ -91,4 +95,14 @@ body {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+  }
+
+  .sell-button {
+    margin-top: 1vw;
+    transition-duration: 0.4s;
+  }
+  
+  .sell-button:hover {
+    background-color: #ff0000; /* Green */
+    color: white;
   }
