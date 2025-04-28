@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CardHead Profile</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Supermercado+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval'; object-src 'self'">
+
 </head>
 <body>
-    
+
+    <!-- Navbar Section -->
+    <div class="navbar">
+        <a href="index.html">User</a>
+        <a href="marketplace.html">Marketplace</a>
+      </div>
+      
+
+
+    <!-- Profile container -->
     <div class="profile-container">
         <div class="pfp">
             <img src="http://127.0.0.1:8080/ipfs/QmNZq41v8o4Svj2kD8tdud9rdYNX4LpXAARApRsQ5Bk3wk" alt="Profile Picture" />
@@ -26,9 +38,8 @@
         </div>
     </div>
     
+    <!-- Scrolling cards wrapper -->
     <div class="scrolling-wrapper">
-        <div class="card"></div>
-
         <div class="card">
             <h2 id="cardName">Charizard</h2>
             <h2 id="certifyName">Certifier: Sliman</h2>
