@@ -6518,12 +6518,12 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0xffD4f40Eb24c8c6466CA89e1bD4c650B92279c13",
-      "transactionHash": "0x37dcf0fda04ee97c3c2517a2c73638d0422a6be2305b7feda306808ed185568d"
+      "address": "0xc56ADAbDAb1A22993c1Dd94C0F247865964E8202",
+      "transactionHash": "0x4a50c87462e85a2ea02c996d614c407a2e44810a85a4a7dfb1d3928e4606a126"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-27T23:35:18.067Z",
+  "updatedAt": "2025-04-28T22:28:00.373Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

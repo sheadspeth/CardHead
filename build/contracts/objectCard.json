@@ -16876,12 +16876,12 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0xeAEe3044b1B958A19DfaE9da5Aa2F255254622Cc",
-      "transactionHash": "0xf1b1cf3b51d75ea52901df8a3ecd409bfb720190dfef13d5fa16f7bb6e8bd468"
+      "address": "0xe1807F0F3b02E10af538CDbDBc491e328177B9df",
+      "transactionHash": "0xaffaf97a79f54b5e1f217c0af96a3313e7b0613ad7f574f46e412c1f1fca066a"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-27T23:35:17.971Z",
+  "updatedAt": "2025-04-28T22:28:00.271Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
