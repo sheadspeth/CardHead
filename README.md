@@ -1,4 +1,4 @@
-Download IPFS Desktop
+1)Download IPFS Desktop
 Go into “Settings”
 Change ipfs config
 <br>
