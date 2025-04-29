@@ -7,6 +7,7 @@ Change ipfs config
 
 Full ipfs config is located in the repository under ipfsconfig
 
+<br>
 2) Download VScode
 <br>
 3) Install MetaMask
