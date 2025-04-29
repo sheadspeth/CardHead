@@ -10551,12 +10551,12 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0x9a5CFA12FFf3Ff1573d515eFd186C1b7d2EF72A7",
-      "transactionHash": "0x73fa4896f41ced19ee572c1ddb3b823c0892d206c546f2afe809c3c53b7fcd55"
+      "address": "0x6D285B79266Cde358Ed5845daa22ffC5167e7c9b",
+      "transactionHash": "0xdf9fabb7cff5fea9b274ad928857b2cfd3f5c4684e55c41183a0614eb6e69689"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-04-29T02:30:59.090Z",
+  "updatedAt": "2025-04-29T03:49:11.625Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

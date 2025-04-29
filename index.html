@@ -10,10 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
     <div class="navbar">
         <a href="index.html">User</a>
         <a href="marketplace.html">Marketplace</a>
+        <div class="search-container">
+            <input type="text" id="searchUsername" placeholder="Enter username...">
+            <button onclick="searchUserProfile()">Search</button>
+          </div>
+          
     </div>
 
     <div class="profile-container">
@@ -71,6 +76,11 @@
         <button onclick="submitRating()">Submit Rating</button>
     </div>
     
+    <div id="tradeForm">
+        <input type="number" id="offeredCardId" placeholder="Your Offered Card ID" />
+        <input type="number" id="requestedCardId" placeholder="Requested Card ID" />
+        <button onclick="submitTrade()">Submit Trade Request</button>
+    </div>
     
     <script src="script.js"></script>
 </body>

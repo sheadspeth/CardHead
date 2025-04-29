@@ -14,6 +14,7 @@ contract objectCard {
         uint8 rating;
         string imageFront;
         string imageBack;
+        address certifierAddress; 
     }
 
     struct Certify {
@@ -31,7 +32,6 @@ contract objectCard {
     event CardAdded(uint barcode, string name);
     event CardCertified(uint barcode, address user, uint8 rating);
 
-    // Add a new card to the database
     function addCard(
         string memory _name,
         string memory _game,
@@ -55,7 +55,8 @@ contract objectCard {
             barcode: currentBarcode,
             rating: _rating,
             imageFront: _imageFront,
-            imageBack: _imageBack
+            imageBack: _imageBack,
+            certifierAddress: address(0)
         });
 
         cardToOwner[currentBarcode] = msg.sender;
@@ -73,19 +74,19 @@ contract objectCard {
         string memory edition,
         uint8 rating,
         string memory imageFront,
-        string memory imageBack
+        string memory imageBack,
+        address certifierAddress
     ) {
         Card memory c = cardDataBase[_barcode];
-        return (c.name, c.game, c.series, c.grade, c.edition, c.rating, c.imageFront, c.imageBack);
-    }
-
-    function getNextBarcode() public view returns (uint) {
-        return nextBarcode;
+        return (
+            c.name, c.game, c.series, c.grade, c.edition,
+            c.rating, c.imageFront, c.imageBack, c.certifierAddress
+        );
     }
 
     function cardCertification(uint _barcode, uint8 _rating) public {
-        require(_barcode > 0 && _barcode < nextBarcode,"Card does not exist");
-        require(_rating <= 10,"Rating must be between 0 and 10");
+        require(_barcode > 0 && _barcode < nextBarcode, "Card does not exist");
+        require(_rating <= 10, "Rating must be between 0 and 10");
 
         certifiedCards.push(Certify({
             barcode: _barcode,
@@ -93,10 +94,17 @@ contract objectCard {
             rating: _rating
         }));
 
+    
+        cardDataBase[_barcode].rating = _rating;
+        cardDataBase[_barcode].certifierAddress = msg.sender;
+
         emit CardCertified(_barcode, msg.sender, _rating);
     }
 
-    
+    function getNextBarcode() public view returns (uint) {
+        return nextBarcode;
+    }
+
     function getCertifiedCard(uint index) public view returns (
         uint barcode,
         address user,
@@ -107,14 +115,8 @@ contract objectCard {
         return (cert.barcode, cert.user, cert.rating);
     }
 
-    
-    function getCertifiedCardCount() public view returns (uint) {
-        return certifiedCards.length;
-    }
-
     function transferCardOwnership(address from, address to, uint cardID) public {
         require(cardToOwner[cardID] == from, "Sender does not own this card");
         cardToOwner[cardID] = to;
     }
 }
-
