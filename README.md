@@ -1,8 +1,8 @@
 1) Download IPFS Desktop
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;a.Go into “Settings”
+&nbsp;&nbsp;&nbsp;&nbsp;a. Go into “Settings”
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;b.Change ipfs config
+&nbsp;&nbsp;&nbsp;&nbsp;b. Change ipfs config
 <br>
 
 ![ipfs](https://github.com/user-attachments/assets/e55f8700-3bca-47ee-b800-ad39ed3fb757)
@@ -36,4 +36,5 @@ Full ipfs config is located in the repository under ipfsconfig
 <br>
 10) Connect Accounts from ganache to MetaMask
 <br>
+
 ![UserPage](https://github.com/user-attachments/assets/e9c1ad51-f56a-41f1-abe9-f5605103dc7f)
