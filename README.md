@@ -1,7 +1,8 @@
-1) Download IPFS Desktop
- a. Go into “Settings”
- b.Change ipfs config
+Download IPFS Desktop
+Go into “Settings”
+Change ipfs config
 <br>
+
 ![ipfs](https://github.com/user-attachments/assets/e55f8700-3bca-47ee-b800-ad39ed3fb757)
 
 Full ipfs config is located in the repository under ipfsconfig
