@@ -106,6 +106,34 @@ async function loadProfile() {
 }
 
 
+
+    async function sellCard(cardId) {
+        const price = prompt("Enter price in WEI:");
+        if (!price) return;
+
+        try {
+            await marketplace.methods.listCard(cardId, price).send({ from: accounts[0] });
+            alert("Card listed for sale!");
+        } catch (error) {
+            console.error("Failed to list card:", error);
+        }
+        } 
+
+
+        async function buyCard(cardId, priceInWei) {
+            try {
+                await marketplace.methods.buyCard(cardId).send({
+                    from: accounts[0],
+                    value: priceInWei // Must be in WEI
+                });
+                alert("Card purchased successfully!");
+
+                await loadMarketplaceCards();
+            } catch (err) {
+                console.error("Error buying card:", err);
+                alert("Failed to buy card.");
+            }   
+        }    
 window.addEventListener("load", async () => {
     if (window.ethereum) {
         web3 = new Web3(window.ethereum);
@@ -120,6 +148,7 @@ window.addEventListener("load", async () => {
         review = new web3.eth.Contract(reviewABI, reviewAddress); */
 
         await loadContracts();
+        await loadMarketplaceCards();
         const hasProfile = await checkIfUserExists(accounts[0]);
         if (!hasProfile) {
             document.getElementById("createAccountForm").style.display = "block";
@@ -132,39 +161,83 @@ window.addEventListener("load", async () => {
     }
 });
 
-async function loadMyCards() {
-  const cardContainer = document.querySelector(".scrolling-wrapper");
-  cardContainer.innerHTML = "";
+async function loadMarketplaceCards() {
+    const container = document.querySelector(".marketplace-container");
 
-  //invisible card spacer
-  const spacer = document.createElement("div");
-  spacer.className = "card";
-  spacer.style.visibility = "hidden";  // Hide the card
-  spacer.style.pointerEvents = "none"; // So it's truly "invisible" to clicking
-  cardContainer.appendChild(spacer);
+    if (!container) {
+        console.log("No marketplace container found. Skipping loading marketplace cards.");
+        return;
+    }
 
-  const nextBarcode = await objectCard.methods.getNextBarcode().call();
+    container.innerHTML = ""; // Clear previous listings
 
-  for (let cardId = 1; cardId < nextBarcode; cardId++) {
-      const owner = await objectCard.methods.cardToOwner(cardId).call();
-      
-      if (owner.toLowerCase() === accounts[0].toLowerCase()) {
-          const cardData = await objectCard.methods.getCard(cardId).call();
+    const nextBarcode = await objectCard.methods.getNextBarcode().call();
 
-          const cardDiv = document.createElement("div");
-          cardDiv.className = "card";
+    for (let cardId = 1; cardId < nextBarcode; cardId++) {
+        const listing = await marketplace.methods.listings(cardId).call();
 
-          cardDiv.innerHTML = `
-              <h2 class="cardName">${cardData.name}</h2>
-              <h3 class="certifyName">Series: ${cardData.series}</h3>
-              <img src="${cardData.imageFront}" alt="Card Image" />
-              <button class="sell-button" onclick="sellCard(${cardId})">Sell</button>
-          `;
+        if (listing.isActive) { // Only display active listings
+            const cardData = await objectCard.methods.getCard(cardId).call();
 
-          cardContainer.appendChild(cardDiv);
-      }
-  }
+            const cardDiv = document.createElement("div");
+            cardDiv.className = "card";
+
+            const priceInEther = web3.utils.fromWei(listing.price, 'ether');
+
+            cardDiv.innerHTML = `
+                <h3>Card #${cardId}</h3>
+                <img src="${cardData.imageFront}" alt="Card Image" />
+                <p>Price: ${priceInEther} ETH</p>
+                <button onclick="buyCard(${cardId}, '${listing.price}')">Buy</button>
+            `;
+
+            container.appendChild(cardDiv);
+        }
+    }
 }
+
+
+
+async function loadMyCards() {
+    const cardContainer = document.querySelector(".scrolling-wrapper");
+  
+    if (!cardContainer) {
+      console.log("No scrolling-wrapper container found. Skipping loading user cards.");
+      return;
+    }
+  
+    cardContainer.innerHTML = "";
+  
+    // invisible card spacer
+    const spacer = document.createElement("div");
+    spacer.className = "card";
+    spacer.style.visibility = "hidden";
+    spacer.style.pointerEvents = "none";
+    cardContainer.appendChild(spacer);
+  
+    const nextBarcode = await objectCard.methods.getNextBarcode().call();
+  
+    for (let cardId = 1; cardId < nextBarcode; cardId++) {
+      const owner = await objectCard.methods.cardToOwner(cardId).call();
+  
+      if (owner.toLowerCase() === accounts[0].toLowerCase()) {
+        const cardData = await objectCard.methods.getCard(cardId).call();
+  
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "card";
+  
+        cardDiv.innerHTML = `
+            <h2 class="cardName">${cardData.name}</h2>
+            <h3 class="certifyName">Series: ${cardData.series}</h3>
+            <img src="${cardData.imageFront}" alt="Card Image" />
+            <button class="sell-button" onclick="sellCard(${cardId})">Sell</button>
+        `;
+  
+        cardContainer.appendChild(cardDiv);
+      }
+    }
+  }
+  
 
   async function checkIfUserExists(account) {
     try {
@@ -360,18 +433,7 @@ async function loadMyCards() {
             alert("Failed to list card.");
         }
 
-        async function buyCard(cardId, priceInWei) {
-            try {
-                await marketplace.methods.buyCard(cardId).send({
-                    from: accounts[0],
-                    value: priceInWei // Must be in WEI
-                });
-                alert("Card purchased successfully!");
-            } catch (err) {
-                console.error("Error buying card:", err);
-                alert("Failed to buy card.");
-            }   
-        }    
+
 
         async function requestTrade(offeredCardId, requestedCardId) {
             try {
@@ -685,16 +747,4 @@ async function getAverageBuyerRating(buyerAddress) {
     }
 
 
-
-    async function sellCard(cardId) {
-    const price = prompt("Enter price in WEI:");
-    if (!price) return;
-
-    try {
-        await marketplace.methods.listCard(cardId, price).send({ from: accounts[0] });
-        alert("Card listed for sale!");
-    } catch (error) {
-        console.error("Failed to list card:", error);
-    }
-    } 
 }

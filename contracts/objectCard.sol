@@ -111,5 +111,10 @@ contract objectCard {
     function getCertifiedCardCount() public view returns (uint) {
         return certifiedCards.length;
     }
+
+    function transferCardOwnership(address from, address to, uint cardID) public {
+        require(cardToOwner[cardID] == from, "Sender does not own this card");
+        cardToOwner[cardID] = to;
+    }
 }
 

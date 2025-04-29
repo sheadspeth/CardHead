@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-    interface IcardHead {
-        function getMyCards() external view returns (uint[] memory);
-        function addCardToUser(uint _cardID) external;
-        function users(address) external view returns (string memory, uint[] memory);
-        function transferCardOwnership(address from, address to, uint cardID) external;
+    interface ICard {
         function cardToOwner(uint cardID) external view returns (address);
+        function transferCardOwnership(address from, address to, uint cardID) external;
     }
 
-contract marketplace{
-    IcardHead public objectCardHead;
 
-    constructor(address _objectCardHeadAddress) {
-        objectCardHead = IcardHead(_objectCardHeadAddress);
+contract marketplace{
+    ICard public objectCard;
+
+    constructor(address _objectCardAddress) {
+        objectCard = ICard(_objectCardAddress);
     }
 
     struct Listing {
@@ -41,7 +39,7 @@ contract marketplace{
     function listCard(uint _cardId, uint _price) public {
         require(_price > 0, "Price must be greater than 0");
 
-        require(objectCardHead.cardToOwner(_cardId) == msg.sender, "You do not own this card");
+        require(objectCard.cardToOwner(_cardId) == msg.sender, "You do not own this card");
 
         listings[_cardId] = Listing(msg.sender, _price, true);
         emit CardListed(_cardId, msg.sender, _price);
@@ -56,16 +54,16 @@ contract marketplace{
         listing.isActive = false;
 
         payable(seller).transfer(listing.price);
-        objectCardHead.transferCardOwnership(seller, msg.sender, _cardID);
+        objectCard.transferCardOwnership(seller, msg.sender, _cardID);
 
         emit CardSold(_cardID, msg.sender, listing.price);
     }
 
     function tradeCardRequest(uint _offeredCardID, uint _requestedCardID) public {
-        require(objectCardHead.cardToOwner(_offeredCardID) == msg.sender, "You do not own the offered card");
+        require(objectCard.cardToOwner(_offeredCardID) == msg.sender, "You do not own the offered card");
 
         // Check for a matching trade request
-        address possibleMatch = objectCardHead.cardToOwner(_requestedCardID);
+        address possibleMatch = objectCard.cardToOwner(_requestedCardID);
 
         TradeRequest memory theirRequest = tradeRequests[possibleMatch];
 
@@ -76,8 +74,8 @@ contract marketplace{
 
         if (isMutualTrade) {
             // Swap ownership
-            objectCardHead.transferCardOwnership(msg.sender, possibleMatch, _offeredCardID);
-            objectCardHead.transferCardOwnership(possibleMatch, msg.sender, _requestedCardID);
+            objectCard.transferCardOwnership(msg.sender, possibleMatch, _offeredCardID);
+            objectCard.transferCardOwnership(possibleMatch, msg.sender, _requestedCardID);
 
             // Clear requests
             delete tradeRequests[possibleMatch];
