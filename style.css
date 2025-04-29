@@ -6,6 +6,27 @@ body {
     overflow-x: hidden;
   }
 
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #111;
+    padding: 1rem;
+    font-family: 'Supermercado One', sans-serif;
+  }
+
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 2rem;
+    font-size: 1.2rem;
+    transition: 0.3s;
+  }
+  .navbar a:hover {
+    color: #00ffc8;
+    text-shadow: 0 0 10px #00ffc8;
+  }
+
 .scrolling-wrapper {
     margin-top: 1%;
     margin-left: -10%;

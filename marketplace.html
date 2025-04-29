@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Marketplace</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Supermercado+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <a href="index.html">User</a>
+    <a href="marketplace.html">Marketplace</a>
+  </div>
+
+  <h1 style="text-align: center;">Marketplace</h1>
+  <div class="marketplace-container">
+    <div class="card">
+      <h3>Card #1</h3>
+      <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card" />
+      <p>Price: 0.01 ETH</p>
+      <button onclick="buyCard(1)">Buy</button>
+    </div>
+
+    <div class="card">
+      <h3>Card #2</h3>
+      <img src="http://127.0.0.1:8080/ipfs/QmfTXudJJgBUG1prjmgRVwqz7MbSEeATKkZ7PcHiPdBvbd" alt="Card" />
+      <p>Price: 0.01 ETH</p>
+      <button onclick="buyCard(2)">Buy</button>
+    </div>
+
+    <!-- Add more hardcoded cards here -->
+  </div>
+
+  <script>
+    const marketplaceAddress = "0x12a261fB67c40Fc615a79B29A2308e2207d64372";
+    const marketplaceABI = [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_objectCardHeadAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "cardId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "name": "CardListed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "cardId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "name": "CardSold",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "user1",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "card1",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "user2",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "card2",
+          "type": "uint256"
+        }
+      ],
+      "name": "TradeExecuted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "requester",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offeredCard",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "requestedCard",
+          "type": "uint256"
+        }
+      ],
+      "name": "TradeRequested",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "listings",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "objectCardHead",
+      "outputs": [
+        {
+          "internalType": "contract IcardHead",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "tradeRequests",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "requester",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "offeredCardID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "requestedCardID",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_cardId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        }
+      ],
+      "name": "listCard",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_cardID",
+          "type": "uint256"
+        }
+      ],
+      "name": "buyCard",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function",
+      "payable": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_offeredCardID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_requestedCardID",
+          "type": "uint256"
+        }
+      ],
+      "name": "tradeCardRequest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ];
+
+    let contract;
+    let accounts;
+
+    window.addEventListener("load", async () => {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        accounts = await web3.eth.getAccounts();
+        contract = new web3.eth.Contract(marketplaceABI, marketplaceAddress);
+      } else {
+        alert("Please install MetaMask");
+      }
+    });
+
+    async function buyCard(cardId) {
+      const priceWei = Web3.utils.toWei("0.01", "ether");
+      try {
+        await contract.methods.buyCard(cardId).send({ from: accounts[0], value: priceWei });
+        alert(`Card #${cardId} purchased!`);
+      } catch (err) {
+        console.error(err);
+        alert("Purchase failed");
+      }
+    }
+  </script>
+</body>
+</html>

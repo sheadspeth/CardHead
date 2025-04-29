@@ -32,6 +32,80 @@ async function loadContracts() {
     review = new web3.eth.Contract(reviewData.abi, reviewData.networks[networkId].address);
   }
 
+
+async function loadProfile() {
+    try {
+        const userAddress = accounts[0];
+
+        // Fetch user profile from blockchain
+        const profile = await objectCardHead.methods.getUserProfile(userAddress).call();
+        const username = profile[0];
+        const profileImage = profile[1];
+        const bio = profile[2];
+
+        // Fetch ratings from review contract
+        let buyerRating = 0;
+        let sellerRating = 0;
+        let certifierRating = 0;
+
+        try {
+            buyerRating = await review.methods.getAverageBuyerRating(userAddress).call();
+        } catch (err) {
+            console.warn("No buyer ratings yet.");
+        }
+
+        try {
+            sellerRating = await review.methods.getAverageSellerRating(userAddress).call();
+        } catch (err) {
+            console.warn("No seller ratings yet.");
+        }
+
+        try {
+            certifierRating = await review.methods.getAverageCertifierRating(userAddress).call();
+        } catch (err) {
+            console.warn("No certifier ratings yet.");
+        }
+
+        // Update Name
+        const nameElement = document.getElementById("Name");
+        if (nameElement) {
+            nameElement.innerText = username || "Unnamed User";
+        }
+
+        // Update Profile Image
+        const imgElement = document.querySelector(".pfp img");
+        if (imgElement) {
+            imgElement.src = profileImage || "default.png";
+        }
+
+        // Update Bio
+        const bioElement = document.getElementById("Bio");
+        if (bioElement) {
+            bioElement.innerText = bio || "No bio yet.";
+        }
+
+        // Update Ratings
+        const buyerRatingElement = document.getElementById("buyerRating");
+        if (buyerRatingElement) {
+            buyerRatingElement.innerText = `buyerRating: ⭐ ${buyerRating}`;
+        }
+
+        const sellerRatingElement = document.getElementById("sellerRating");
+        if (sellerRatingElement) {
+            sellerRatingElement.innerText = `sellerRating: ⭐ ${sellerRating}`;
+        }
+
+        const certifyRatingElement = document.getElementById("certifyRating");
+        if (certifyRatingElement) {
+            certifyRatingElement.innerText = `certifyRating: ⭐ ${certifierRating}`;
+        }
+
+    } catch (err) {
+        console.error("Error loading profile:", err);
+    }
+}
+
+
 window.addEventListener("load", async () => {
     if (window.ethereum) {
         web3 = new Web3(window.ethereum);
@@ -50,7 +124,7 @@ window.addEventListener("load", async () => {
         if (!hasProfile) {
             document.getElementById("createAccountForm").style.display = "block";
         } else {
-            //await loadProfile();
+            await loadProfile();
             loadMyCards();
         }
     } else {
@@ -121,76 +195,158 @@ async function loadMyCards() {
 
 
     async function createAccount() {
-      const username = document.getElementById('newUsername').value.trim();  // .trim() removes empty spaces
-      const fileInput = document.getElementById('profileImage');
-      const file = fileInput.files[0];
-  
-      if (!username) {
-          alert("Please enter a username.");
-          return;
-      }
-      if (!file) {
-          alert("Please choose a profile picture.");
-          return;
-      }
-  
-      try {
-          const ipfsUrl = await uploadToIPFS(file);
-          console.log("Uploaded profile image to IPFS:", ipfsUrl);
-  
-          await objectCardHead.methods.createUser(username).send({ from: accounts[0] });
-  
-          localStorage.setItem("profileImage", ipfsUrl);
-          localStorage.setItem("username", username);
-  
-          alert("Account created!");
-          //loadProfile();
-      } catch (err) {
-          console.error("Error creating account:", err);
-          alert("Failed to create account. See console for details.");
-      }
-  }
+        const username = document.getElementById('newUsername').value.trim();
+        const fileInput = document.getElementById('profileImage');
+        const file = fileInput.files[0];
+    
+        if (!username) {
+            alert("Please enter a username.");
+            return;
+        }
+        if (!file) {
+            alert("Please choose a profile picture.");
+            return;
+        }
+    
+        try {
+            const ipfsUrl = await uploadToIPFS(file);
+            console.log("Uploaded profile image to IPFS:", ipfsUrl);
+    
+            // 🔥 PASS BOTH username AND ipfsUrl
+            await objectCardHead.methods.createUser(username, ipfsUrl).send({ from: accounts[0] });
+    
+            localStorage.setItem("profileImage", ipfsUrl);
+            localStorage.setItem("username", username);
+    
+            alert("Account created!");
+            await loadProfile(); // Optionally refresh profile immediately
+        } catch (err) {
+            console.error("Error creating account:", err);
+            alert("Failed to create account. See console for details.");
+        }
+    }
+    
 
-  async function uploadCard() {
-    const name = document.getElementById('cardName').value.trim();
-    const fileInput = document.getElementById('cardImageFront');
-    const file = fileInput.files[0];
+    async function uploadCard() {
+        const name = document.getElementById('cardName').value.trim();
+        const fileInput = document.getElementById('cardImageFront');
+        const file = fileInput.files[0];
 
-    if (!name && !file) {
-        alert("Please enter a card name and upload an image.");
-        return;
-    } else if (!name) {
-        alert("Please enter a card name.");
-        return;
-    } else if (!file) {
-        alert("Please upload a card image.");
-        return;
+        if (!name && !file) {
+            alert("Please enter a card name and upload an image.");
+            return;
+        } else if (!name) {
+            alert("Please enter a card name.");
+            return;
+        } else if (!file) {
+            alert("Please upload a card image.");
+            return;
+        }
+
+        try {
+            const ipfsUrl = await uploadToIPFS(file);
+            console.log("Uploaded image to IPFS:", ipfsUrl);
+
+            await objectCard.methods.addCard(
+                name,
+                "Pokemon",        // game
+                "Indigo League",   // series
+                1,                // grade (enum value for GUARDIAN)
+                "First Edition",   // edition
+                1,                // rating (1 star?)
+                ipfsUrl,           // imageFront
+                ipfsUrl            // imageBack (same for now)
+            ).send({ from: accounts[0] });
+
+            alert("Card uploaded successfully!");
+
+        } catch (error) {
+            console.error("Error uploading card:", error);
+            alert("Failed to upload card. See console for details.");
+        }
     }
 
-    try {
-        const ipfsUrl = await uploadToIPFS(file);
-        console.log("Uploaded image to IPFS:", ipfsUrl);
+    async function updateBio() {
+        const newBio = document.getElementById('newBio').value.trim();
 
-        await objectCard.methods.addCard(
-            name,
-            "Pokemon",        // game
-            "Indigo League",   // series
-            1,                // grade (enum value for GUARDIAN)
-            "First Edition",   // edition
-            1,                // rating (1 star?)
-            ipfsUrl,           // imageFront
-            ipfsUrl            // imageBack (same for now)
-        ).send({ from: accounts[0] });
+        if (!newBio) {
+            alert("Please enter a bio.");
+            return;
+        }
 
-        alert("Card uploaded successfully!");
+        try {
+            await objectCardHead.methods.updateBio(newBio).send({ from: accounts[0] });
+            alert("Bio updated successfully!");
 
-    } catch (error) {
-        console.error("Error uploading card:", error);
-        alert("Failed to upload card. See console for details.");
+            // Optional: refresh the profile on the page immediately
+            await loadProfile();
+        } catch (err) {
+            console.error("Error updating bio:", err);
+            alert("Failed to update bio. Check console for details.");
+        }
     }
-}
 
+    async function submitRating() {
+        const username = document.getElementById('usernameInput').value.trim();
+        const rating = parseInt(document.getElementById('ratingValue').value);
+        const ratingType = document.getElementById('ratingType').value;
+    
+        if (!username) {
+            alert("Please enter a username.");
+            return;
+        }
+    
+        if (isNaN(rating) || rating < 0 || rating > 5) {
+            alert("Rating must be between 0 and 5.");
+            return;
+        }
+    
+        try {
+            const userAddresses = await getAllUserAddresses();
+            let userAddress = null;
+    
+            for (const addr of userAddresses) {
+                const name = await objectCardHead.methods.getMyName().call({ from: addr });
+                if (username.toLowerCase() === name.toLowerCase()) {
+                    userAddress = addr;
+                    break;
+                }
+            }
+    
+            if (!userAddress) {
+                alert("Username not found.");
+                return;
+            }
+    
+            if (ratingType === "buyer") {
+                await review.methods.rateBuyer(userAddress, rating).send({ from: accounts[0] });
+            } else if (ratingType === "seller") {
+                await review.methods.rateSeller(userAddress, rating).send({ from: accounts[0] });
+            } else if (ratingType === "certifier") {
+                await review.methods.rateCertifier(userAddress, rating).send({ from: accounts[0] });
+            }
+    
+            alert(`Successfully rated ${ratingType}!`);
+    
+        } catch (error) {
+            console.error("Error submitting rating:", error);
+            alert("Failed to submit rating.");
+        }
+    }
+    
+    
 
+    async function getAllUserAddresses() {
+        try {
+            const users = await objectCardHead.methods.getAllUsers().call();
+            return users;
+        } catch (error) {
+            console.error("Error fetching user list:", error);
+            return [];
+        }
+    }
+    
+    
 //Marketplace functions
     async function listCard() {
         const cardId = document.getElementById("cardId").value;
@@ -499,32 +655,6 @@ async function getAverageBuyerRating(buyerAddress) {
 
 
 //html functions
-    async function loadProfile() {
-      try {
-          const userName = await objectCardHead.methods.getMyName().call({ from: accounts[0] });
-
-          // Try pulling profile picture from local storage
-          const profileImage = localStorage.getItem("profileImage");
-
-          if (userName) {
-              const nameElement = document.getElementById("Name");
-              if (nameElement) {
-                  nameElement.innerText = userName;
-              }
-          }
-
-          if (profileImage) {
-              const imgElement = document.querySelector(".pfp img");
-              if (imgElement) {
-                  imgElement.src = profileImage;
-              }
-          }
-      } catch (err) {
-          console.error("Error loading profile:", err);
-      }
-    }
-
-
 
     async function loadCards() {
         const cardContainer = document.querySelector(".scrolling-wrapper");
