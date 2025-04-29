@@ -1,5 +1,7 @@
 1)Download IPFS Desktop
+<br>
 &nbsp;&nbsp;&nbsp;&nbsp;a.Go into “Settings”
+<br>
 &nbsp;&nbsp;&nbsp;&nbsp;b.Change ipfs config
 <br>
 
@@ -22,7 +24,7 @@ Full ipfs config is located in the repository under ipfsconfig
 <br>
 8)Add a custom network
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp; a. Network Name: Ganache Local
+&nbsp;&nbsp;&nbsp;&nbsp;a. Network Name: Ganache Local
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;b. RPC URL: http://127.0.0.1:7545
 <br>
