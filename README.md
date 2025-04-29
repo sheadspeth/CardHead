@@ -1,6 +1,6 @@
 1)Download IPFS Desktop
-Go into “Settings”
-Change ipfs config
+&nbsp;&nbsp;&nbsp;&nbsp;a.Go into “Settings”
+&nbsp;&nbsp;&nbsp;&nbsp;b.Change ipfs config
 <br>
 
 ![ipfs](https://github.com/user-attachments/assets/e55f8700-3bca-47ee-b800-ad39ed3fb757)
@@ -22,13 +22,13 @@ Full ipfs config is located in the repository under ipfsconfig
 <br>
 8)Add a custom network
 <br>
-&nbsp;&nbsp;&nbsp; a. Network Name: Ganache Local
+&nbsp;&nbsp;&nbsp;&nbsp; a. Network Name: Ganache Local
 <br>
- b. RPC URL: http://127.0.0.1:7545
+&nbsp;&nbsp;&nbsp;&nbsp;b. RPC URL: http://127.0.0.1:7545
 <br>
- c. Chain ID: 1337
+&nbsp;&nbsp;&nbsp;&nbsp;c. Chain ID: 1337
 <br>
- d. Symbol: ETH
+&nbsp;&nbsp;&nbsp;&nbsp;d. Symbol: ETH
 <br>
 9) Open a new terminal in the CardHead folder that contains index.html type “npm serve .”
 <br>
