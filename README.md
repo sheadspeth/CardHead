@@ -8,7 +8,9 @@ Change ipfs config
 Full ipfs config is located in the repository under ipfsconfig
 
 2)Download VScode
+<br>
 3)Install MetaMask
+<br>
 4)Open VScode “Clone Git Repository” to desired destination (we use documents)
 5) Open a terminal at root type “ganache --port 7545 --chain.chainId 1337 --chain.networkId 1337”
 6)open a terminal at “CardHead” folder and type “rm -fr build” → “truffle compile”	→ “truffle migrate --reset --network development”
