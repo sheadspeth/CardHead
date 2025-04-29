@@ -1,4 +1,4 @@
-1)Download IPFS Desktop
+1) Download IPFS Desktop
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;a.Go into “Settings”
 <br>
@@ -14,15 +14,15 @@ Full ipfs config is located in the repository under ipfsconfig
 <br>
 3) Install MetaMask
 <br>
-4)Open VScode “Clone Git Repository” to desired destination (we use documents)
+4) Open VScode “Clone Git Repository” to desired destination (we use documents)
 <br>
 5) Open a terminal at root type “ganache --port 7545 --chain.chainId 1337 --chain.networkId 1337”
 <br>
-6)open a terminal at “CardHead” folder and type “rm -fr build” → “truffle compile”	→ “truffle migrate --reset --network development”
+6) Open a terminal at “CardHead” folder and type “rm -fr build” → “truffle compile”	→ “truffle migrate --reset --network development”
 <br>
-7)Create an Account
+7) Create an Account
 <br>
-8)Add a custom network
+8) Add a custom network
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;a. Network Name: Ganache Local
 <br>
@@ -34,6 +34,6 @@ Full ipfs config is located in the repository under ipfsconfig
 <br>
 9) Open a new terminal in the CardHead folder that contains index.html type “npm serve .”
 <br>
-10)Connect Accounts from ganache to MetaMask
+10) Connect Accounts from ganache to MetaMask
 <br>
 ![UserPage](https://github.com/user-attachments/assets/e9c1ad51-f56a-41f1-abe9-f5605103dc7f)
