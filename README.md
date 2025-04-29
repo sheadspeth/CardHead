@@ -22,7 +22,7 @@ Full ipfs config is located in the repository under ipfsconfig
 <br>
 8)Add a custom network
 <br>
- > a. Network Name: Ganache Local
+&nbsp; a. Network Name: Ganache Local
 <br>
  b. RPC URL: http://127.0.0.1:7545
 <br>
